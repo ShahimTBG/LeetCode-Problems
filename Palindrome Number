@@ -1,0 +1,63 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <cmath>
+
+using namespace std;
+//Function Prototype
+bool isPalindrome(int);
+
+int main()
+{
+    int x;
+    cout << "Enter the number you want to check if it is a palindrome or not: " << endl;
+    cin >> x;
+    cout << endl;
+    
+    if(isPalindrome(x) == 1)
+    {
+        cout << "Yes, this number is a palindrome." << endl;
+    }
+    else
+    {
+        cout << "No, this number is not a palindrome." << endl;
+    }
+}
+
+//Function to check if the number is a palindrome
+bool isPalindrome(int x)
+{
+    //x cannot be a palindrome if the number is negative
+    if(x < 0)
+    {
+        return false;
+    }
+    
+    //Numbers such as 100 and 200 cannot be palindromes
+    if(x!=0 && x%10==0)
+    {
+        return false;
+    }
+    
+    int reverse = 0;
+    
+    //Comparing the second half of the number to the first half (reverse variable)
+    while(x > reverse)
+    {
+        reverse = reverse * 10 + x%10;
+        x=x/10;
+    }
+    
+    if(x == reverse)
+    {
+        return true;
+    }
+    
+    //In case there is an odd numbered palindrome we ignore the middle number
+    if(reverse/10 == x)
+    {
+        return true;
+    }
+    
+    return false;
+}
